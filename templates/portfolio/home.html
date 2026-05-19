@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} | Portfolio</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="animated-bg" aria-hidden="true"></div>
+    <header class="site-header">
+        <nav class="nav">
+            <a class="brand" href="#home">{{ name }}</a>
+            <button class="menu-button" type="button" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content reveal">
+                <p class="eyebrow">Available for internships and junior roles</p>
+                <h1>Hi, I am {{ name }}.</h1>
+                <p class="hero-text">
+                    I build simple, useful web applications with Python, Django,
+                    HTML, CSS, and JavaScript.
+                </p>
+                <div class="hero-actions">
+                    <a class="button primary" href="#projects">View Projects</a>
+                    <a class="button secondary" href="#contact">Contact Me</a>
+                </div>
+                <div class="hero-stats" aria-label="Portfolio highlights">
+                    <span><strong>6+</strong> Skills</span>
+                    <span><strong>3</strong> Projects</span>
+                    <span><strong>100%</strong> Responsive</span>
+                </div>
+            </div>
+            <div class="hero-visual reveal" aria-label="Profile summary">
+                <div class="profile-panel tilt-card">
+                    <div class="avatar">{{ name|slice:":1" }}</div>
+                    <h2>{{ role }}</h2>
+                    <p>{{ location }}</p>
+                </div>
+                <div class="floating-card card-one">
+                    <span class="card-label">Backend</span>
+                    <strong>Django</strong>
+                </div>
+                <div class="floating-card card-two">
+                    <span class="card-label">Frontend</span>
+                    <strong>HTML CSS JS</strong>
+                </div>
+                <div class="code-window" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section reveal" id="about">
+            <div class="section-heading">
+                <p class="eyebrow">About</p>
+                <h2>A clean portfolio for your first impression.</h2>
+            </div>
+            <p class="about-text">
+                I am a motivated developer learning how to create reliable web
+                applications. This portfolio is powered by Django on the backend
+                and uses HTML, CSS, and JavaScript for the frontend.
+            </p>
+        </section>
+
+        <section class="section reveal" id="skills">
+            <div class="section-heading">
+                <p class="eyebrow">Skills</p>
+                <h2>Technologies I use</h2>
+            </div>
+            <div class="skill-list">
+                {% for skill in skills %}
+                    <article class="skill-card reveal-item">
+                        <span class="box-label">Skill</span>
+                        <h3>{{ skill.name }}</h3>
+                        <span class="box-label">Description</span>
+                        <p>{{ skill.description }}</p>
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="section reveal" id="projects">
+            <div class="section-heading">
+                <p class="eyebrow">Projects</p>
+                <h2>Selected work</h2>
+            </div>
+            <div class="project-grid">
+                {% for project in projects %}
+                    <article class="project-card reveal-item tilt-card">
+                        <span class="box-label">Project</span>
+                        <h3>{{ project.title }}</h3>
+                        <span class="box-label">Description</span>
+                        <p>{{ project.description }}</p>
+                        <span class="box-label">Tech Stack</span>
+                        <strong class="tech-stack">{{ project.tech }}</strong>
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="section contact-section reveal" id="contact">
+            <div>
+                <p class="eyebrow">Contact</p>
+                <h2>Let us build something useful.</h2>
+                <p>You can update this email, name, role, and project content in the Django view.</p>
+            </div>
+            <a class="button primary" href="mailto:{{ email }}">{{ email }}</a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 {{ name }}. Built with Django.</p>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
