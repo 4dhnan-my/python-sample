@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Portfolio</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="auth-page">
+    <div class="animated-bg" aria-hidden="true"></div>
+    <main class="auth-shell">
+        <section class="auth-panel">
+            <a class="auth-brand" href="{% url 'home' %}">Portfolio</a>
+            <p class="eyebrow">Welcome back</p>
+            <h1>Login</h1>
+            <form class="auth-form" method="post">
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                    <div class="form-errors">{{ form.non_field_errors }}</div>
+                {% endif %}
+                <label for="{{ form.username.id_for_label }}">Username</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="form-errors">{{ form.username.errors }}</div>
+                {% endif %}
+                <label for="{{ form.password.id_for_label }}">Password</label>
+                {{ form.password }}
+                {% if form.password.errors %}
+                    <div class="form-errors">{{ form.password.errors }}</div>
+                {% endif %}
+                <button class="button primary" type="submit">Login</button>
+            </form>
+            <p class="auth-switch">New here? <a href="{% url 'register' %}">Create an account</a></p>
+        </section>
+    </main>
+</body>
+</html>
